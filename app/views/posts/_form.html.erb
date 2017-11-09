@@ -9,15 +9,24 @@
     <%= f.text_area :content %>
   </p>
 
-  <% Category.all.each do |c| %>
+  <p>
+    <h4><%= f.label :category, "Category:" %></h4> 
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
+  </p>
+
+  <!-- <% Category.all.each do |c| %>
     <p>
        <label for="category_id_<%= c.id %>"><%= c.name %></label>
        <input type="checkbox" name="post[category_ids][]" value="<%= c.id %>" id="category_id_<%= c.id %>">
     </p>
-  <% end %>
+  <% end %> -->
 
-  <input type="text" id="post_categories_attributes_0_name" name="post[categories_attributes][0][name]"placeholder="New Category 1"><br>
-  <input type="text" id="post_categories_attributes_1_name" name="post[categories_attributes][1][name]" placeholder="New Category 2"><br>
+
+  <%= f.fields_for :categories do |category_builder| %>
+    <%= category_builder.text_field :name%>
+  <% end %>
+  <!-- <input type="text" id="post_categories_attributes_0_name" name="post[categories_attributes][0][name]"placeholder="New Category 1"><br>
+  <input type="text" id="post_categories_attributes_1_name" name="post[categories_attributes][1][name]" placeholder="New Category 2"><br> -->
 
   <%= f.submit %>
 <% end %>

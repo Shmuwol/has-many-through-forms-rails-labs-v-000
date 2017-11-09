@@ -8,3 +8,11 @@
     <li><%= c.name %></li>
   <% end %>
 </ul>
+
+
+<h4>Comments:</h4>
+
+  <% @post.comments.each do | comment| %>
+    User: <%= comment.user.username  %>
+    <%= comment.content %>
+  <% end %>
